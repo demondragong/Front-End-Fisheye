@@ -1,30 +1,15 @@
+    // get and return data about photographers from the json file
     async function getPhotographers() {
-        // Penser à remplacer par les données récupérées dans le json
-        const photographers = [
-            {
-                "name": "Ma data test",
-                "id": 1,
-                "city": "Paris",
-                "country": "France",
-                "tagline": "Ceci est ma data test",
-                "price": 400,
-                "portrait": "account.png"
-            },
-            {
-                "name": "Autre data test",
-                "id": 2,
-                "city": "Londres",
-                "country": "UK",
-                "tagline": "Ceci est ma data test 2",
-                "price": 500,
-                "portrait": "account.png"
-            },
-        ]
-        // et bien retourner le tableau photographers seulement une fois
+        
+        const photographers = await fetch("data/photographers.json")
+                                .then(res => res.json())
+                                .then(res => res.photographers)
+                                .catch(err => console.log('an error occurs', err))
         return ({
-            photographers: [...photographers, ...photographers, ...photographers]})
+            photographers: photographers})
     }
 
+    // add photographers cards to the page
     async function displayData(photographers) {
         const photographersSection = document.querySelector(".photographer_section");
 
@@ -33,13 +18,14 @@
             const userCardDOM = photographerModel.getUserCardDOM();
             photographersSection.appendChild(userCardDOM);
         });
-    };
+    }
 
     async function init() {
-        // Récupère les datas des photographes
+        // get photographers data
         const { photographers } = await getPhotographers();
+        // add photographers cards to page
         displayData(photographers);
-    };
+    }
     
     init();
     
