@@ -2,10 +2,14 @@
     display: none;
 }
 
-.photograph-header {
+.photographer__header {
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 50px;
 }
 
 .contact_button {

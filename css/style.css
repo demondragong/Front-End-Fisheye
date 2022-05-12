@@ -50,7 +50,7 @@ h1 {
     line-height: 47px;
 }
 
-.photographer_section article img {
+.photographer__img {
     height: 200px;
     width: 200px;
     object-fit: cover;

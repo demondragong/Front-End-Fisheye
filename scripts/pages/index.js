@@ -5,8 +5,7 @@
                                 .then(res => res.json())
                                 .then(res => res.photographers)
                                 .catch(err => console.log('an error occurs', err))
-        return ({
-            photographers: photographers})
+        return ({photographers: photographers})
     }
 
     // add photographers cards to the page
@@ -15,7 +14,7 @@
 
         photographers.forEach((photographer) => {
             const photographerModel = photographerFactory(photographer);
-            const userCardDOM = photographerModel.getUserCardDOM();
+            const userCardDOM = photographerModel.getUserCardDOM("square");
             photographersSection.appendChild(userCardDOM);
         });
     }
