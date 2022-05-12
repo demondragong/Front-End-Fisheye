@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
@@ -8,35 +8,56 @@
     <title>Fisheye - photographe </title>
   </head>
   <body>
-    <header role="banner">
+    <header role="banner" aria-hidden="false">
       <a href="index.html">
         <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/>
       </a>
     </header>
-    <main id="main">
+    <main id="main" aria-hidden="false">
+      <button id="contact_button" class="contact_button">Contactez-moi</button>
       <div class="media_section"></div>
     </main>
 
-    <aside class="photographer__sticker"></aside>
+    <aside class="photographer__sticker" aria-hidden="false" aria-labelledby="modalTitle"></aside>
 
-    <div id="contact_modal">
+    <div id="contact_modal" role="dialog">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <h2 id="modalTitle">Contactez-moi</h2>
+          <img src="assets/icons/close.svg" id="close_modal" alt="button to close modal"/>
         </header>
 				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
+          <div class="formData">
+              <label for="fname">Prénom</label>
+              <input class="text-control" type="text" id="fname" name="fname"/>
+              <span class="error" aria-live="polite"></span>
+          </div>
+          <div class="formData">
+              <label for="lname">Nom</label>
+              <input class="text-control" type="text" id="lname" name="lname"/>
+              <span class="error" aria-live="polite"></span>
+          </div>
+          <div class="formData">
+              <label for="email">Email</label>
+              <input class="text-control" type="text" id="email" name="email" />
+              <span class="error" aria-live="polite"></span>
+          </div>
+          <div class="formData">
+              <label for="message">Votre message</label>
+              <input class="text-control text-control--long" type="text" id="message" name="message" />
+              <span class="error" aria-live="polite"></span>
+          </div>
+          <button id="submit_button" class="contact_button">Envoyer</button>
 				</form>
 			</div>
 		</div>
+
+    <div id="lightbox_modal" role="dialog">
+    </div>
+
     <script src="scripts/factories/photographer.js"></script>
     <script src="scripts/factories/media.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
     <script src="scripts/pages/photographer.js"></script>
+    <script defer src="/scripts/utils/contactForm.js"></script>
   </body>
 </html>

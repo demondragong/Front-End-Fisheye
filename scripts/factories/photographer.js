@@ -68,9 +68,7 @@ function photographerFactory(data) {
             div.appendChild(quote);
 
             // contact button
-            const button = document.createElement('button');
-            button.className = "contact_button";
-            button.textContent = "Contactez-moi";
+            const button = document.getElementById('contact_button');
 
             // create container and append all relevent
             const container = document.createElement( 'section' );

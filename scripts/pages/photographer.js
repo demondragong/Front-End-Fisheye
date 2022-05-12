@@ -32,6 +32,13 @@ async function updatePhotographerSticker(photographer) {
     photographerSticker.textContent = photographer.price + "€ / jour";
 }
 
+// update modal with name of photographer
+async function updateModalName(photographer) {
+    const modalH2 = document.querySelector(".modal h2");
+    const lineBreak = document.createElement("br");
+    modalH2.append(lineBreak, photographer.name);
+}
+
 // add media cards to the page
 async function displayData(media) {
     const mediaSection = document.querySelector(".media_section");
@@ -56,6 +63,7 @@ async function init() {
     // add photographer card to page
     updatePhotographerData(photographer);
     updatePhotographerSticker(photographer);
+    updateModalName(photographer);
 
     const { media } = await getMedia(urlId);
     displayData(media);
