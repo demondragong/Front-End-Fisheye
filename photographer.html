@@ -53,11 +53,25 @@
 		</div>
 
     <div id="lightbox_modal" role="dialog">
+      <!-- medium can be here -->
+      <span id="lightbox_title">titre de la photo</span>
+      <button type="button" id="lightbox_previous" aria-label="Previous">
+        <img src="assets/icons/previous_red.svg" aria-hidden="true"  alt=""/> 
+      </button>
+      <button type="button" id="lightbox_next" aria-label="Next">
+        <img src="assets/icons/next_red.svg" aria-hidden="true"  alt=""/> 
+      </button>
+      <button type="button" id="lightbox_close" aria-label="Close">
+        <img src="assets/icons/close_red.svg" aria-hidden="true"  alt=""/> 
+      </button>
+
+      
     </div>
 
     <script src="scripts/factories/photographer.js"></script>
     <script src="scripts/factories/media.js"></script>
     <script src="scripts/pages/photographer.js"></script>
-    <script defer src="/scripts/utils/contactForm.js"></script>
+    <script defer src="scripts/utils/contactForm.js"></script>
+    <script defer src="scripts/utils/lightboxModal.js"></script>
   </body>
 </html>

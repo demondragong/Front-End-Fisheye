@@ -7,6 +7,49 @@
     right: 0;
 }
 
+#lightbox_modal {
+    display: none;
+    grid-template-columns: 100px 1fr 100px;
+    grid-template-rows: 1fr 1fr 40px;
+    grid-template-areas: 
+      ". pic_area close_area"
+      "previous_area pic_area next_area"
+      ". title_area .";
+    position: fixed;
+    background: white;
+    width: 90vw;
+    height: 90vh;
+    max-width: 1253px;
+    padding: 1rem;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+#lightbox_modal button {
+    background: none;
+    border: none;
+}
+#lightbox_medium {
+    grid-area: pic_area;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+#lightbox_title {
+    grid-area: title_area;
+}
+#lightbox_previous {
+    grid-area: previous_area;
+}
+#lightbox_next {
+    grid-area: next_area;
+}
+#lightbox_close {
+    grid-area: close_area;
+}
+
 .photographer__header {
     background-color: #FAFAFA;
     height: 300px;
@@ -64,16 +107,24 @@
 }
 .medium__likes {
     font-weight: 500;
+    margin-left: auto;
+    margin-right: 0.5rem;
 }
 
 .photographer__sticker {
     background-color: #DB8876;
     border-radius: 5px;
-    padding: 21px;
+    padding: 1.5rem;
     font-size: 24px;
     position: fixed;
-    right: 6px;
+    right: 3rem;
     bottom: -12px;
+    display: flex;
+}
+
+.total-like-button {
+    margin-left: .5rem;
+    margin-right: 3rem;
 }
 
 .modal {

@@ -24,24 +24,30 @@ function mediaFactory(data) {
         
         // medium title
         const mediumTitle = document.createElement( 'h2' );
-        mediumTitle.classList = "medium__title"
+        mediumTitle.classList = "medium__title";
         mediumTitle.textContent = title;
         
         // medium likes
         const mediumLikes = document.createElement( 'p' );
-        mediumLikes.classList = "medium__likes"
+        mediumLikes.classList = "medium__likes";
         mediumLikes.textContent = likes;
+
+        // medium heart button
+        const likeButton = document.createElement('img');
+        likeButton.className = "like-button";
+        likeButton.setAttribute("src", "assets/icons/heart.svg");
+        likeButton.setAttribute("alt", "");
 
         // medium legend
         const legend = document.createElement( 'div' );
         legend.className = "medium__legend";
-        legend.append(mediumTitle, mediumLikes)
+        legend.append(mediumTitle, mediumLikes, likeButton);
 
         // create container and append all relevent
         const container = document.createElement( 'div' );
         container.className = "medium";
         container.id = id;
-        container.append(mediumPicture, legend)
+        container.append(mediumPicture, legend);
 
         return container
         
