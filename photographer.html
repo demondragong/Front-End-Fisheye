@@ -15,6 +15,41 @@
     </header>
     <main id="main" aria-hidden="false">
       <button id="contact_button" class="contact_button">Contactez-moi</button>
+      <button id="sortbytitle">Sort by title</button>
+      <button id="sortbylikes">Sort by likes</button>
+      <button id="sortbydate">Sort by date</button>
+
+      <div class="listbox-area">
+        <div class="left-area">
+          <span id="exp_elem">
+            Trier par
+          </span>
+          <div id="exp_wrapper">
+            <button aria-haspopup="listbox"
+                    aria-labelledby="exp_elem exp_button"
+                    id="exp_button">
+              Popularité
+            </button>
+            <ul id="exp_elem_list"
+                tabindex="-1"
+                role="listbox"
+                aria-labelledby="exp_elem"
+                class="hidden">
+              <li id="mediumLikes" role="option">
+                Popularité
+              </li>
+              <li id="mediumDate" role="option">
+                Date
+              </li>
+              <li id="mediumTitle" role="option">
+                Titre
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
       <div class="media_section"></div>
     </main>
 
