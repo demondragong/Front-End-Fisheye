@@ -1,26 +1,22 @@
 function mediaFactory(data) {
-    const { title, id, photographerId, image, video, likes } = data;
+    const { title, id, photographerId, image, video, likes, date } = data;
     
     const picture = image ? `assets/media/${photographerId}/${image}`
                            : `assets/media/${photographerId}/${video}`;
 
     function getMediaCardDOM() {
+        // create image or video element accordingly
         let mediumPicture;
         if (image) {
-            // medium image
             mediumPicture = document.createElement( 'img' );
-            mediumPicture.className = "medium__img";
-            mediumPicture.setAttribute("src", picture);
-            mediumPicture.setAttribute("alt", title);
         } else {
-            // medium video
             mediumPicture = document.createElement( 'video' );
-            mediumPicture.className = "medium__img";
             // mediumPicture.setAttribute("preload", "none")
             // mediumPicture.controls = true;
-            mediumPicture.setAttribute("src", picture);
-            mediumPicture.setAttribute("alt", title);
         }
+        mediumPicture.className = "medium__img";
+        mediumPicture.setAttribute("src", picture);
+        mediumPicture.setAttribute("alt", title);
         
         // medium title
         const mediumTitle = document.createElement( 'h2' );
@@ -47,6 +43,9 @@ function mediaFactory(data) {
         const container = document.createElement( 'div' );
         container.className = "medium";
         container.id = id;
+        container.setAttribute("data-medium-title", title);
+        container.setAttribute("data-medium-likes", likes);
+        container.setAttribute("data-medium-date", date);
         container.append(mediumPicture, legend);
 
         return container

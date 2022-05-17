@@ -11,7 +11,7 @@ mediaSection.addEventListener("click", function(event) {
     let target = event.target;
     // show modal if the user clicked on an image
     if(target.className == 'medium__img') {
-        // picking the src of the media directly from the element that the user clicked
+        // clone the element the user clicked into the modal
         const medium = target.cloneNode();
         medium.id = "lightbox_medium";
         lightboxModal.prepend(medium);
@@ -24,14 +24,15 @@ mediaSection.addEventListener("click", function(event) {
 lightboxCloseIcon.addEventListener("click", closeModal.bind(null, lightboxModal));
 
 lightboxPreviousIcon.addEventListener("click", function() {
-    const currentMediaSrc = document.getElementById("lightbox_image").getAttribute("src");
+    
+    const currentMediaSrc = document.getElementById("lightbox_medium").getAttribute("src");
     const currentMedia = document.querySelector(`.media_section [src='${currentMediaSrc}']`);
     // try to get the previous element, if there is none i.e. the lightbox is showing the first media, then get the last element
     try {
         const previousMediaSrc = currentMedia.parentElement.previousSibling.firstChild.getAttribute("src");
-        document.getElementById("lightbox_image").setAttribute("src", previousMediaSrc);
+        document.getElementById("lightbox_medium").setAttribute("src", previousMediaSrc);
     } catch {
         const lastMediaSrc = document.getElementsByClassName("media_section")[0].lastChild.firstChild.getAttribute("src");
-        document.getElementById("lightbox_image").setAttribute("src", lastMediaSrc);
+        document.getElementById("lightbox_medium").setAttribute("src", lastMediaSrc);
     }
 })

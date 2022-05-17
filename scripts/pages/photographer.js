@@ -120,6 +120,30 @@ async function init() {
         }
     });
 
+    const sortbytitle = document.getElementById("sortbytitle");
+    sortbytitle.addEventListener("click", function() {
+        var list = document.querySelector('.media_section');
+        [...list.children]
+            .sort((a,b)=>a.dataset.mediumTitle>b.dataset.mediumTitle?1:-1)
+            .forEach(node=>list.appendChild(node));
+    })
+
+    const sortbydate = document.getElementById("sortbydate");
+    sortbydate.addEventListener("click", function() {
+        var list = document.querySelector('.media_section');
+        [...list.children]
+            .sort((a,b)=>a.dataset.mediumDate>b.dataset.mediumDate?1:-1)
+            .forEach(node=>list.appendChild(node));
+    })
+
+    const sortbylikes = document.getElementById("sortbylikes");
+    sortbylikes.addEventListener("click", function() {
+        var list = document.querySelector('.media_section');
+        [...list.children]
+            .sort((a,b) => b.dataset.mediumLikes - a.dataset.mediumLikes)
+            .forEach(node=>list.appendChild(node));
+    })
+
 }
 
 init();
