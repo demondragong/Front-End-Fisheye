@@ -71,9 +71,9 @@ async function updatePhotographerSticker(photographer, media) {
 
 // update modal with name of photographer
 async function updateModalName(photographer) {
-    const modalH2 = document.querySelector(".modal h2");
+    const modalTitle = document.getElementById("modalTitle");
     const lineBreak = document.createElement("br");
-    modalH2.append(lineBreak, photographer.name);
+    modalTitle.append(lineBreak, photographer.name);
 }
 
 // increment like counters
@@ -161,6 +161,20 @@ async function init() {
             })
             .forEach(node=>list.appendChild(node));
     }
+
+
+    // event listeners to trap focus in contact modal
+
+    const ModalTabBarrierTop = document.getElementsByClassName("ModalTabBarrier")[0];
+    ModalTabBarrierTop.addEventListener("focus", function() {
+            document.getElementById("close_modal").focus();
+        })
+
+    const ModalTabBarrierBottom = document.getElementsByClassName("ModalTabBarrier")[1];
+    ModalTabBarrierBottom.addEventListener("focus", function() {
+            document.getElementById("fname").focus();
+        })
+
 }
 
 init();

@@ -13,9 +13,9 @@
         <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/>
       </a>
     </header>
+
     <main id="main" aria-hidden="false">
       <button id="contact_button" class="contact_button">Contactez-moi</button>
-      
       <section class="sort-area">
         <span id="sort-area-label">
           Trier par
@@ -46,19 +46,15 @@
           </ul>
         </div>
       </section>
-
-
       <div class="media_section"></div>
     </main>
 
     <aside class="photographer__sticker" aria-hidden="false" aria-labelledby="modalTitle"></aside>
 
-    <div id="contact_modal" role="dialog">
+    <div id="contact_modal" role="dialog" aria-modal=”true” aria-labelledby="modalTitle">
 			<div class="modal">
-				<header>
-          <h2 id="modalTitle">Contactez-moi</h2>
-          <img src="assets/icons/close.svg" id="close_modal" alt="button to close modal"/>
-        </header>
+        <div class="ModalTabBarrier" tabindex="0" aria-hidden="true"> </div>
+        <h1 id="modalTitle">Contactez-moi</h1>
 				<form>
           <div class="formData">
               <label for="fname">Prénom</label>
@@ -82,10 +78,14 @@
           </div>
           <button id="submit_button" class="contact_button">Envoyer</button>
 				</form>
+        <button type="button" id="close_modal" aria-label="Close">
+          <img src="assets/icons/close.svg" aria-hidden="true"  alt=""/> 
+        </button>
+        <div class="ModalTabBarrier" tabindex="0" aria-hidden="true"> </div>
 			</div>
 		</div>
 
-    <div id="lightbox_modal" role="dialog">
+    <div id="lightbox_modal" role="dialog" aria-modal=”true”>
       <!-- medium can be here -->
       <span id="lightbox_title">titre de la photo</span>
       <button type="button" id="lightbox_previous" aria-label="Previous">
@@ -97,8 +97,6 @@
       <button type="button" id="lightbox_close" aria-label="Close">
         <img src="assets/icons/close_red.svg" aria-hidden="true"  alt=""/> 
       </button>
-
-      
     </div>
 
     <script src="scripts/factories/photographer.js"></script>

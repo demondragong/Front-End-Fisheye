@@ -6,6 +6,13 @@
     left: 0;
     right: 0;
 }
+#close_modal {
+    background: unset;
+    border: unset;
+    position: absolute;
+    top: 55px;
+    right: 35px;
+}
 
 .sort-area{
     margin: 0 100px;
@@ -187,30 +194,23 @@
     border-radius: 5px;
     background-color: #DB8876;
     width: 50%;
+    max-width: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 35px;
     margin: auto;
+    position: relative;
 }
 
-.modal header {
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 100%;
-    height: unset;
-}
-
-.modal header img {
-    cursor: pointer;
-}
-
-.modal header h2 {
-    font-size: 4rem;
+#modalTitle {
+    font-size: 3.8rem;
+    color: black;
     font-weight: normal;
     text-align: left;
-    margin-block: 0;
+    margin: 0;
+    width: 100%;
 }
 
 form {

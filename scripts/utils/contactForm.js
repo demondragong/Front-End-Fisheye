@@ -10,6 +10,9 @@ function displayModal(modal) {
     photographerSticker.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "hidden"; // ADD THIS LINE
 	modal.style.display = "grid";
+    if (modal.id == "contact_modal") {
+        document.getElementById("fname").focus();
+    }
 }
 
 function closeModal(modal) {
