@@ -8,6 +8,7 @@ function displayModal(modal) {
     header.setAttribute("aria-hidden", "true");
     main.setAttribute("aria-hidden", "true");
     photographerSticker.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "hidden"; // ADD THIS LINE
 	modal.style.display = "grid";
 }
 
@@ -15,7 +16,11 @@ function closeModal(modal) {
     header.setAttribute("aria-hidden", "false");
     main.setAttribute("aria-hidden", "false");
     photographerSticker.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "auto"; // ADD THIS LINE
     modal.style.display = "none";
+    if (modal.id == "lightbox_modal") {
+        document.getElementById("lightbox_medium").remove();
+    }
 }
 
 // for this exercise, submitting the modal is equivalent to showing the field values in the console and clearing them

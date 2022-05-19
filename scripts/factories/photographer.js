@@ -8,7 +8,7 @@ function photographerFactory(data) {
         const img = document.createElement( 'img' );
         img.className = "photographer__img";
         img.setAttribute("src", picture);
-        img.setAttribute("alt", name)
+        img.setAttribute("alt", "");
         
         // photographer's name
         const h2 = document.createElement( 'h2' );
@@ -60,10 +60,15 @@ function photographerFactory(data) {
 
         } else {
 
+            // photographer's name
+            const h1 = document.createElement( 'h1' );
+            h1.classList = "photographer__name"
+            h1.textContent = name;
+
             // photographer details
             const div = document.createElement( 'div' );
             div.classList = "photographer__details";
-            div.appendChild(h2);
+            div.appendChild(h1);
             div.appendChild(location);
             div.appendChild(quote);
 

@@ -16,7 +16,7 @@ function mediaFactory(data) {
         }
         mediumPicture.className = "medium__img";
         mediumPicture.setAttribute("src", picture);
-        mediumPicture.setAttribute("alt", title);
+        mediumPicture.setAttribute("alt", "");
         
         // medium title
         const mediumTitle = document.createElement( 'h2' );

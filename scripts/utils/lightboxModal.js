@@ -27,12 +27,42 @@ lightboxPreviousIcon.addEventListener("click", function() {
     
     const currentMediaSrc = document.getElementById("lightbox_medium").getAttribute("src");
     const currentMedia = document.querySelector(`.media_section [src='${currentMediaSrc}']`);
-    // try to get the previous element, if there is none i.e. the lightbox is showing the first media, then get the last element
-    try {
-        const previousMediaSrc = currentMedia.parentElement.previousSibling.firstChild.getAttribute("src");
-        document.getElementById("lightbox_medium").setAttribute("src", previousMediaSrc);
-    } catch {
-        const lastMediaSrc = document.getElementsByClassName("media_section")[0].lastChild.firstChild.getAttribute("src");
-        document.getElementById("lightbox_medium").setAttribute("src", lastMediaSrc);
+    const mediaCollection = document.querySelectorAll(".media_section .medium__img");
+
+    const mediumIndex = [...mediaCollection].indexOf(currentMedia);
+
+    let newMedium;
+    // if this is not the first element in the collection get the previous one, if it is the first get the last one
+    if (mediumIndex > 0) {
+        newMedium = mediaCollection[mediumIndex - 1].cloneNode();
+    } else {
+        newMedium = mediaCollection[mediaCollection.length -1].cloneNode();
     }
+    // delete element that was shown in the lightbox
+    document.getElementById("lightbox_medium").remove();
+    // prepend new element
+    newMedium.id = "lightbox_medium";
+    lightboxModal.prepend(newMedium);
+})
+
+lightboxNextIcon.addEventListener("click", function() {
+    
+    const currentMediaSrc = document.getElementById("lightbox_medium").getAttribute("src");
+    const currentMedia = document.querySelector(`.media_section [src='${currentMediaSrc}']`);
+    const mediaCollection = document.querySelectorAll(".media_section .medium__img");
+
+    const mediumIndex = [...mediaCollection].indexOf(currentMedia);
+
+    let newMedium;
+    // if this is not the last element in the collection get the next one, if it is the last get the first one
+    if (mediumIndex < mediaCollection.length - 1) {
+        newMedium = mediaCollection[mediumIndex + 1].cloneNode();
+    } else {
+        newMedium = mediaCollection[0].cloneNode();
+    }
+    // delete element that was shown in the lightbox
+    document.getElementById("lightbox_medium").remove();
+    // prepend new element
+    newMedium.id = "lightbox_medium";
+    lightboxModal.prepend(newMedium);
 })

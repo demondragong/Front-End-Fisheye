@@ -60,7 +60,7 @@ async function updatePhotographerSticker(photographer, media) {
     const likeButton = document.createElement('img');
     likeButton.className = "total-like-button";
     likeButton.setAttribute("src", "assets/icons/heart.svg");
-    likeButton.setAttribute("alt", "");
+    likeButton.setAttribute("alt", "likes");
 
     const dailyRate = document.createElement('span');
     dailyRate.id = "daily-rate";
@@ -120,30 +120,47 @@ async function init() {
         }
     });
 
-    const sortbytitle = document.getElementById("sortbytitle");
-    sortbytitle.addEventListener("click", function() {
-        var list = document.querySelector('.media_section');
-        [...list.children]
-            .sort((a,b)=>a.dataset.mediumTitle>b.dataset.mediumTitle?1:-1)
-            .forEach(node=>list.appendChild(node));
+
+
+    // media sorting (by number of likes, date and title)
+
+    const sortButton = document.getElementById("sort-button");
+    const sortList = document.getElementById("sort-list")
+
+    sortButton.addEventListener("click", function() {
+        sortList.classList.toggle("hidden");
+        sortButton.classList.toggle("hidden");
     })
 
-    const sortbydate = document.getElementById("sortbydate");
-    sortbydate.addEventListener("click", function() {
-        var list = document.querySelector('.media_section');
-        [...list.children]
-            .sort((a,b)=>a.dataset.mediumDate>b.dataset.mediumDate?1:-1)
-            .forEach(node=>list.appendChild(node));
+    sortList.addEventListener("click", function(event) {
+        // change l'ordre des media sur la page
+        sortMedia(event.target.id);
+        // change le texte visible sur le bouton
+        sortButton.textContent=event.target.textContent;
+        // puts the selected criteria at the top of the list
+        sortList.prepend(document.getElementById(event.target.id));
+        // hide list and show button
+        sortList.classList.toggle("hidden");
+        sortButton.classList.toggle("hidden");
     })
 
-    const sortbylikes = document.getElementById("sortbylikes");
-    sortbylikes.addEventListener("click", function() {
+    function sortMedia(sortingCriteria) {
         var list = document.querySelector('.media_section');
         [...list.children]
-            .sort((a,b) => b.dataset.mediumLikes - a.dataset.mediumLikes)
+            .sort((a,b)=> {
+                switch(sortingCriteria) {
+                    case 'sortbylikes':
+                        return b.dataset.mediumLikes - a.dataset.mediumLikes;
+                    case 'sortbydate':
+                        return a.dataset.mediumDate>b.dataset.mediumDate?1:-1;
+                    case 'sortbytitle':
+                        return a.dataset.mediumTitle>b.dataset.mediumTitle?1:-1;
+                    default:
+                        console.log('Sort criteria not known')
+                }
+            })
             .forEach(node=>list.appendChild(node));
-    })
-
+    }
 }
 
 init();
