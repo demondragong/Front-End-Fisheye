@@ -73,7 +73,7 @@
           </div>
           <div class="formData">
               <label for="message">Votre message</label>
-              <input class="text-control text-control--long" type="text" id="message" name="message" />
+              <textarea class="text-control" type="text" id="message" name="message" rows="3"></textarea>
               <span class="error" aria-live="polite"></span>
           </div>
           <button id="submit_button" class="contact_button">Envoyer</button>
@@ -87,7 +87,7 @@
 
     <div id="lightbox_modal" role="dialog" aria-modal=”true”>
       <!-- medium can be here -->
-      <span id="lightbox_title">titre de la photo</span>
+      <span id="lightbox_title"></span>
       <button type="button" id="lightbox_previous" aria-label="Previous">
         <img src="assets/icons/previous_red.svg" aria-hidden="true"  alt=""/> 
       </button>

@@ -8,7 +8,7 @@ function displayModal(modal) {
     header.setAttribute("aria-hidden", "true");
     main.setAttribute("aria-hidden", "true");
     photographerSticker.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "hidden"; // ADD THIS LINE
+    document.body.style.overflow = "hidden";
 	modal.style.display = "grid";
     if (modal.id == "contact_modal") {
         document.getElementById("fname").focus();
@@ -19,7 +19,7 @@ function closeModal(modal) {
     header.setAttribute("aria-hidden", "false");
     main.setAttribute("aria-hidden", "false");
     photographerSticker.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "auto"; // ADD THIS LINE
+    document.body.style.overflow = "auto";
     modal.style.display = "none";
     if (modal.id == "lightbox_modal") {
         document.getElementById("lightbox_medium").remove();
@@ -50,3 +50,9 @@ const submitButton = document.getElementById("submit_button");
 contactButton.addEventListener("click", displayModal.bind(null, contactModal));
 modalCloseIcon.addEventListener("click", closeModal.bind(null, contactModal));
 submitButton.addEventListener("click", submitModal);
+// close modal on esc key
+contactModal.addEventListener("keydown", function(event) {
+    if(event.key=='Escape') {
+        closeModal(contactModal);
+    }
+});
