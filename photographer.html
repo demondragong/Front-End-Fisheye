@@ -22,25 +22,24 @@
         </span>
         <div id="sort-wrapper">
           <button role="button"
+                  aria-labelledby="sort-area-label"
                   aria-haspopup="listbox"
-                  aria-expanded
+                  aria-expanded="false"
                   id="sort-button"
                   class="contact_button">Popularité
           </button>
           <ul id="sort-list"
               tabindex="-1"
               role="listbox"
-              aria-activedescendant
               aria-selected
-              aria-labelledby="sort-area-label"
               class="hidden contact_button">
-            <li id="sortbylikes" role="option">
+            <li id="sortbylikes" role="option" tabindex="0">
               Popularité
             </li>
-            <li id="sortbydate" role="option">
+            <li id="sortbydate" role="option" tabindex="0">
               Date
             </li>
-            <li id="sortbytitle" role="option">
+            <li id="sortbytitle" role="option" tabindex="0">
               Titre
             </li>
           </ul>

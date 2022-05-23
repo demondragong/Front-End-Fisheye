@@ -123,15 +123,16 @@ async function init() {
 
 
     // media sorting (by number of likes, date and title)
-
     const sortButton = document.getElementById("sort-button");
     const sortList = document.getElementById("sort-list")
 
     sortButton.addEventListener("click", function() {
         sortList.classList.toggle("hidden");
         sortButton.classList.toggle("hidden");
+        sortButton.setAttribute("aria-expanded", "true");
     })
 
+    // media sorting with click
     sortList.addEventListener("click", function(event) {
         // change l'ordre des media sur la page
         sortMedia(event.target.id);
@@ -142,7 +143,26 @@ async function init() {
         // hide list and show button
         sortList.classList.toggle("hidden");
         sortButton.classList.toggle("hidden");
+        sortButton.setAttribute("aria-expanded", "false");
     })
+
+    // media sorting with keyboard
+    sortList.addEventListener("keydown", function(event) {
+        if(event.key == 'Enter') {
+            console.log(document.activeElement.id);
+            // change l'ordre des media sur la page
+            sortMedia(document.activeElement.id);
+            // change le texte visible sur le bouton
+            sortButton.textContent=document.activeElement.textContent;
+            // puts the selected criteria at the top of the list
+            sortList.prepend(document.getElementById(document.activeElement.id));
+            // hide list and show button
+            sortList.classList.toggle("hidden");
+            sortButton.classList.toggle("hidden");
+            sortButton.setAttribute("aria-expanded", "false");
+    }
+    })
+
 
     function sortMedia(sortingCriteria) {
         var list = document.querySelector('.media_section');

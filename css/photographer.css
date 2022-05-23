@@ -34,6 +34,7 @@
     height: unset;
     position: relative;
     top: 70px;
+    z-index: 2;
 }
 #sort-wrapper li{
     padding: 1rem 0.8rem;

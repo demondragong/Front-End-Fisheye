@@ -21,6 +21,18 @@ mediaSection.addEventListener("click", function(event) {
     }
 })
 
+// handle lightbox opening when user presses enter while focusing on a picture
+mediaSection.addEventListener("keydown", function(event) {
+    if(event.key == 'Enter') {
+        // clone the element the user pressed enter on into the modal
+        const medium = document.activeElement.cloneNode();
+        medium.id = "lightbox_medium";
+        lightboxModal.prepend(medium);
+        lightboxMediumTitle.textContent = document.activeElement.nextElementSibling.querySelector(".medium__title").textContent;
+        displayModal(lightboxModal);
+    }
+})
+
 // lightbox navigation functions
 function showPreviousMedium() {
     const currentMediaSrc = document.getElementById("lightbox_medium").getAttribute("src");
@@ -69,23 +81,20 @@ lightboxCloseIcon.addEventListener("click", closeModal.bind(null, lightboxModal)
 lightboxPreviousIcon.addEventListener("click", showPreviousMedium);
 lightboxNextIcon.addEventListener("click", showNextMedium);
 
-// event handlers to navigate in an close the  lightbox carousel - with keyboard
-document.addEventListener("keydown", function(event) {
-    switch (event.key) {
-        case 'Escape':
-            closeModal(lightboxModal);
-            console.log('oui');
-            break;
-        case 'ArrowLeft':
-            showPreviousMedium();
-            console.log('left');
-            break;
-        case 'ArrowRight':
-            showNextMedium();
-            console.log('right');
-            break;
-        default:
-            break;
-    }
-});
+// // event handlers to navigate in an close the  lightbox carousel - with keyboard
+// document.addEventListener("keydown", function(event) {
+//     switch (event.key) {
+//         case 'Escape':
+//             closeModal(lightboxModal);
+//             break;
+//         case 'ArrowLeft':
+//             showPreviousMedium();
+//             break;
+//         case 'ArrowRight':
+//             showNextMedium();
+//             break;
+//         default:
+//             break;
+//     }
+// })
 

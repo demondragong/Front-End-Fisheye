@@ -12,6 +12,23 @@ function displayModal(modal) {
 	modal.style.display = "grid";
     if (modal.id == "contact_modal") {
         document.getElementById("fname").focus();
+    } else {
+        // event handlers to navigate in an close the  lightbox carousel - with keyboard
+        document.addEventListener("keydown", function(event) {
+            switch (event.key) {
+                case 'Escape':
+                    closeModal(lightboxModal);
+                    break;
+                case 'ArrowLeft':
+                    showPreviousMedium();
+                    break;
+                case 'ArrowRight':
+                    showNextMedium();
+                    break;
+                default:
+                    break;
+            }
+        })
     }
 }
 
@@ -23,6 +40,7 @@ function closeModal(modal) {
     modal.style.display = "none";
     if (modal.id == "lightbox_modal") {
         document.getElementById("lightbox_medium").remove();
+        document.removeEventListener("keydown");
     }
 }
 
