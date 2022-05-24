@@ -126,11 +126,20 @@ async function init() {
     const sortButton = document.getElementById("sort-button");
     const sortList = document.getElementById("sort-list")
 
-    sortButton.addEventListener("click", function() {
+    function showListbox() {
         sortList.classList.toggle("hidden");
         sortButton.classList.toggle("hidden");
         sortButton.setAttribute("aria-expanded", "true");
-    })
+      }
+      
+    function hideListbox() {
+        sortList.classList.toggle("hidden");
+        sortButton.classList.toggle("hidden");
+        sortButton.removeAttribute("aria-expanded");
+      }
+
+
+    sortButton.addEventListener("click", showListbox);
 
     // media sorting with click
     sortList.addEventListener("click", function(event) {
@@ -141,15 +150,12 @@ async function init() {
         // puts the selected criteria at the top of the list
         sortList.prepend(document.getElementById(event.target.id));
         // hide list and show button
-        sortList.classList.toggle("hidden");
-        sortButton.classList.toggle("hidden");
-        sortButton.setAttribute("aria-expanded", "false");
+        hideListbox();
     })
 
     // media sorting with keyboard
     sortList.addEventListener("keydown", function(event) {
         if(event.key == 'Enter') {
-            console.log(document.activeElement.id);
             // change l'ordre des media sur la page
             sortMedia(document.activeElement.id);
             // change le texte visible sur le bouton
@@ -157,12 +163,11 @@ async function init() {
             // puts the selected criteria at the top of the list
             sortList.prepend(document.getElementById(document.activeElement.id));
             // hide list and show button
-            sortList.classList.toggle("hidden");
-            sortButton.classList.toggle("hidden");
-            sortButton.setAttribute("aria-expanded", "false");
-    }
+            hideListbox();
+        } else if (event.key == 'Escape') {
+            hideListbox();
+        }
     })
-
 
     function sortMedia(sortingCriteria) {
         var list = document.querySelector('.media_section');
@@ -183,8 +188,9 @@ async function init() {
     }
 
 
-    // event listeners to trap focus in contact modal
 
+    // CONTACT MODAL
+    // event listeners to trap focus in contact modal
     const ModalTabBarrierTop = document.getElementsByClassName("ModalTabBarrier")[0];
     ModalTabBarrierTop.addEventListener("focus", function() {
             document.getElementById("close_modal").focus();
@@ -198,3 +204,5 @@ async function init() {
 }
 
 init();
+
+
