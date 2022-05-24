@@ -156,6 +156,7 @@
     height: 350px;
     width: 350px;
     object-fit: cover;
+    cursor: pointer;
 }
 .medium__legend {
     width: 350px;
@@ -185,7 +186,9 @@
     bottom: -12px;
     display: flex;
 }
-
+.like-button {
+    cursor: pointer;
+}
 .total-like-button {
     margin-left: .5rem;
     margin-right: 3rem;

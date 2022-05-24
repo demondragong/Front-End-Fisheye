@@ -76,12 +76,6 @@ async function updateModalName(photographer) {
     modalTitle.append(lineBreak, photographer.name);
 }
 
-// increment like counters
-function incrementCounter() {
-    const totalLikes = document.getElementById("total-likes");
-    totalLikes.textContent = parseInt(totalLikes.textContent) + 1;
-}
-
 // function to run on page load
 async function init() {
     // get photographer whose id matches the url
@@ -124,7 +118,7 @@ async function init() {
 
     // media sorting (by number of likes, date and title)
     const sortButton = document.getElementById("sort-button");
-    const sortList = document.getElementById("sort-list")
+    const sortList = document.getElementById("sort-list");
 
     function showListbox() {
         sortList.classList.toggle("hidden");
@@ -140,6 +134,27 @@ async function init() {
 
 
     sortButton.addEventListener("click", showListbox);
+    
+    // sortButton.addEventListener("keydown", function(event) {
+    //     if (event.key == 'Enter' || event.key == 'ArrowDown' || event.key == 'ArrowUp') {
+    //         showListbox();
+    //     }
+    // });
+
+        // switch(event.key) {
+        //     case 'Enter':
+        //         showListbox();
+        //         // movefocus
+        //         break;
+        //     case 'ArrowDown':
+        //         showListbox();
+        //         // movefocus
+        //         break;
+        //     case 'ArrowUp':
+        //         showListbox();
+        //         // movefocus
+        //         break;
+        // }
 
     // media sorting with click
     sortList.addEventListener("click", function(event) {
@@ -149,6 +164,11 @@ async function init() {
         sortButton.textContent=event.target.textContent;
         // puts the selected criteria at the top of the list
         sortList.prepend(document.getElementById(event.target.id));
+        // mark it as selected for accessibility purpose
+        if(sortList.querySelector("[aria-selected]")) {
+            sortList.querySelector("[aria-selected]").removeAttribute("aria-selected");
+        }
+        event.target.setAttribute('aria-selected', 'true');
         // hide list and show button
         hideListbox();
     })
@@ -158,6 +178,11 @@ async function init() {
         if(event.key == 'Enter') {
             // change l'ordre des media sur la page
             sortMedia(document.activeElement.id);
+            // mark it as selected for accessibility purpose
+            if(sortList.querySelector("[aria-selected]")) {
+                sortList.querySelector("[aria-selected]").removeAttribute("aria-selected");
+            }
+            document.activeElement.setAttribute('aria-selected', 'true');
             // change le texte visible sur le bouton
             sortButton.textContent=document.activeElement.textContent;
             // puts the selected criteria at the top of the list
