@@ -135,26 +135,6 @@ async function init() {
 
     sortButton.addEventListener("click", showListbox);
     
-    // sortButton.addEventListener("keydown", function(event) {
-    //     if (event.key == 'Enter' || event.key == 'ArrowDown' || event.key == 'ArrowUp') {
-    //         showListbox();
-    //     }
-    // });
-
-        // switch(event.key) {
-        //     case 'Enter':
-        //         showListbox();
-        //         // movefocus
-        //         break;
-        //     case 'ArrowDown':
-        //         showListbox();
-        //         // movefocus
-        //         break;
-        //     case 'ArrowUp':
-        //         showListbox();
-        //         // movefocus
-        //         break;
-        // }
 
     // media sorting with click
     sortList.addEventListener("click", function(event) {
@@ -212,19 +192,6 @@ async function init() {
             .forEach(node=>list.appendChild(node));
     }
 
-
-
-    // CONTACT MODAL
-    // event listeners to trap focus in contact modal
-    const ModalTabBarrierTop = document.getElementsByClassName("ModalTabBarrier")[0];
-    ModalTabBarrierTop.addEventListener("focus", function() {
-            document.getElementById("close_modal").focus();
-        })
-
-    const ModalTabBarrierBottom = document.getElementsByClassName("ModalTabBarrier")[1];
-    ModalTabBarrierBottom.addEventListener("focus", function() {
-            document.getElementById("fname").focus();
-        })
 
 }
 

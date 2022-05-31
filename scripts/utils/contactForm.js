@@ -1,48 +1,11 @@
-// top level DOM elements
-const header = document.querySelector("header");
-const main = document.getElementById("main");
-const photographerSticker = document.getElementsByClassName("photographer__sticker")[0];
+// get DOM elements
 const contactModal = document.getElementById("contact_modal");
+const contactButton = document.getElementById("contact_button");
+const modalCloseIcon = document.getElementById("close_modal");
+const submitButton = document.getElementById("submit_button");
+const ModalTabBarrierTop = document.getElementsByClassName("ModalTabBarrier")[0];
+const ModalTabBarrierBottom = document.getElementsByClassName("ModalTabBarrier")[1];
 
-function displayModal(modal) {
-    header.setAttribute("aria-hidden", "true");
-    main.setAttribute("aria-hidden", "true");
-    photographerSticker.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "hidden";
-	modal.style.display = "grid";
-    if (modal.id == "contact_modal") {
-        document.getElementById("fname").focus();
-    } else {
-        // event handlers to navigate in an close the  lightbox carousel - with keyboard
-        document.addEventListener("keydown", function(event) {
-            switch (event.key) {
-                case 'Escape':
-                    closeModal(lightboxModal);
-                    break;
-                case 'ArrowLeft':
-                    showPreviousMedium();
-                    break;
-                case 'ArrowRight':
-                    showNextMedium();
-                    break;
-                default:
-                    break;
-            }
-        })
-    }
-}
-
-function closeModal(modal) {
-    header.setAttribute("aria-hidden", "false");
-    main.setAttribute("aria-hidden", "false");
-    photographerSticker.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "auto";
-    modal.style.display = "none";
-    if (modal.id == "lightbox_modal") {
-        document.getElementById("lightbox_medium").remove();
-        document.removeEventListener("keydown");
-    }
-}
 
 // for this exercise, submitting the modal is equivalent to showing the field values in the console and clearing them
 function submitModal(e) {
@@ -59,18 +22,28 @@ function submitModal(e) {
     document.getElementById("message").value = "";
 }
 
-// get form DOM elements
-const contactButton = document.getElementById("contact_button");
-const modalCloseIcon = document.getElementById("close_modal");
-const submitButton = document.getElementById("submit_button");
+function focusOnFirstname() {
+    document.getElementById("fname").focus();
+}
 
-// event handlers
-contactButton.addEventListener("click", displayModal.bind(null, contactModal));
+function focusOnExitButton() {
+    document.getElementById("close_modal").focus();
+}
+
+
+// EVENT LISTENERS
+contactButton.addEventListener("click", function() {
+    displayModal(contactModal);
+    focusOnFirstname();
+});
 modalCloseIcon.addEventListener("click", closeModal.bind(null, contactModal));
 submitButton.addEventListener("click", submitModal);
-// close modal on esc key
 contactModal.addEventListener("keydown", function(event) {
     if(event.key=='Escape') {
         closeModal(contactModal);
     }
 });
+
+// trap focus in contact modal
+ModalTabBarrierTop.addEventListener("focus", focusOnExitButton);
+ModalTabBarrierBottom.addEventListener("focus", focusOnFirstname);

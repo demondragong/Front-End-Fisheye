@@ -11,8 +11,6 @@ function mediaFactory(data) {
             mediumPicture = document.createElement( 'img' );
         } else {
             mediumPicture = document.createElement( 'video' );
-            // mediumPicture.setAttribute("preload", "none")
-            // mediumPicture.controls = true;
         }
         mediumPicture.className = "medium__img";
         mediumPicture.setAttribute("src", picture);

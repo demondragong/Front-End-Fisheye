@@ -19,6 +19,7 @@ async function displayData(photographers) {
     });
 }
 
+// function to run on page load
 async function init() {
     // get photographers data
     const { photographers } = await getPhotographers();
