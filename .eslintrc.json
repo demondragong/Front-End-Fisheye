@@ -9,5 +9,11 @@
         "sourceType": "module"
     },
     "rules": {
+    },
+    "globals": {
+        "displayModal": "readonly",
+        "closeModal": "readonly",
+        "photographerFactory": "readonly",
+        "mediaFactory": "readonly"
     }
 }

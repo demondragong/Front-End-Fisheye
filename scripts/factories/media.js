@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 function mediaFactory(data) {
     const { title, id, photographerId, image, video, likes, date } = data;
     

@@ -3,6 +3,8 @@ const header = document.querySelector("header");
 const main = document.getElementById("main");
 const photographerSticker = document.getElementsByClassName("photographer__sticker")[0];
 
+
+// eslint-disable-next-line no-unused-vars
 function displayModal(modal) {
     header.setAttribute("aria-hidden", "true");
     main.setAttribute("aria-hidden", "true");
@@ -11,6 +13,7 @@ function displayModal(modal) {
 	modal.style.display = "grid";
 }
 
+// eslint-disable-next-line no-unused-vars
 function closeModal(modal) {
     header.setAttribute("aria-hidden", "false");
     main.setAttribute("aria-hidden", "false");

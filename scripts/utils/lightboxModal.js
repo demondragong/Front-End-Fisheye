@@ -18,6 +18,10 @@ function populateModal(elementToShow) {
     lightboxMediumTitle.textContent = elementToShow.nextElementSibling.querySelector(".medium__title").textContent;
 }
 
+function focusOnMedium() {
+    document.getElementById("lightbox_medium").focus();
+}
+
 // lightbox navigation functions
 function showPreviousMedium() {
     const currentMediaSrc = document.getElementById("lightbox_medium").getAttribute("src");
@@ -92,6 +96,7 @@ mediaSection.addEventListener("click", function(event) {
         // clone the element the user clicked into the modal
         populateModal(target);
         displayModal(lightboxModal);
+        focusOnMedium();
         // event handlers to navigate in an close the  lightbox carousel - with keyboard
         document.addEventListener("keydown", handleKeyboardNav)
     }
@@ -103,6 +108,7 @@ mediaSection.addEventListener("keydown", function(event) {
         // clone the element the user pressed enter on into the modal
         populateModal(document.activeElement);
         displayModal(lightboxModal);
+        focusOnMedium();
         // event handlers to navigate in an close the  lightbox carousel - with keyboard
         document.addEventListener("keydown", handleKeyboardNav)
     }

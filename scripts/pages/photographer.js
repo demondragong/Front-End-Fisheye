@@ -48,7 +48,7 @@ function getTotalLikes(media) {
     return totalLikes
 }
 
-// update photographer sticker
+// update photographer bottom sticker
 async function updatePhotographerSticker(photographer, media) {
     const photographerSticker = document.querySelector(".photographer__sticker");
 
@@ -116,7 +116,7 @@ async function init() {
 
 
 
-    // media sorting (by number of likes, date and title)
+    // MEDIA SORTING (by number of likes, date and title)
     const sortButton = document.getElementById("sort-button");
     const sortList = document.getElementById("sort-list");
 
@@ -124,55 +124,13 @@ async function init() {
         sortList.classList.toggle("hidden");
         sortButton.classList.toggle("hidden");
         sortButton.setAttribute("aria-expanded", "true");
-      }
+    }
       
     function hideListbox() {
         sortList.classList.toggle("hidden");
         sortButton.classList.toggle("hidden");
         sortButton.removeAttribute("aria-expanded");
-      }
-
-
-    sortButton.addEventListener("click", showListbox);
-    
-
-    // media sorting with click
-    sortList.addEventListener("click", function(event) {
-        // change l'ordre des media sur la page
-        sortMedia(event.target.id);
-        // change le texte visible sur le bouton
-        sortButton.textContent=event.target.textContent;
-        // puts the selected criteria at the top of the list
-        sortList.prepend(document.getElementById(event.target.id));
-        // mark it as selected for accessibility purpose
-        if(sortList.querySelector("[aria-selected]")) {
-            sortList.querySelector("[aria-selected]").removeAttribute("aria-selected");
-        }
-        event.target.setAttribute('aria-selected', 'true');
-        // hide list and show button
-        hideListbox();
-    })
-
-    // media sorting with keyboard
-    sortList.addEventListener("keydown", function(event) {
-        if(event.key == 'Enter') {
-            // change l'ordre des media sur la page
-            sortMedia(document.activeElement.id);
-            // mark it as selected for accessibility purpose
-            if(sortList.querySelector("[aria-selected]")) {
-                sortList.querySelector("[aria-selected]").removeAttribute("aria-selected");
-            }
-            document.activeElement.setAttribute('aria-selected', 'true');
-            // change le texte visible sur le bouton
-            sortButton.textContent=document.activeElement.textContent;
-            // puts the selected criteria at the top of the list
-            sortList.prepend(document.getElementById(document.activeElement.id));
-            // hide list and show button
-            hideListbox();
-        } else if (event.key == 'Escape') {
-            hideListbox();
-        }
-    })
+    }
 
     function sortMedia(sortingCriteria) {
         var list = document.querySelector('.media_section');
@@ -192,7 +150,43 @@ async function init() {
             .forEach(node=>list.appendChild(node));
     }
 
+    function updateListbox(selectedSortingCriteria) {
+        // change button text
+        sortButton.textContent=selectedSortingCriteria.textContent;
+        // put the selected criteria at the top of the list
+        sortList.prepend(document.getElementById(selectedSortingCriteria.id));
+        // mark it as selected for accessibility purpose
+        if(sortList.querySelector("[aria-selected]")) {
+            sortList.querySelector("[aria-selected]").removeAttribute("aria-selected");
+        }
+        selectedSortingCriteria.setAttribute('aria-selected', 'true');
+    }
 
+    // EVENT LISTENERS
+    sortButton.addEventListener("click", showListbox);
+    // media sorting with click
+    sortList.addEventListener("click", function(event) {
+        // change media sorting on page
+        sortMedia(event.target.id);
+        // update list and button
+        updateListbox(event.target);
+        // hide list and show button
+        hideListbox();
+    })
+
+    // media sorting with keyboard
+    sortList.addEventListener("keydown", function(event) {
+        if(event.key == 'Enter') {
+            // change media sorting on page
+            sortMedia(document.activeElement.id);
+            // update list and button
+            updateListbox(document.activeElement);
+            // hide list and show button
+            hideListbox();
+        } else if (event.key == 'Escape') {
+            hideListbox();
+        }
+    })
 }
 
 init();
